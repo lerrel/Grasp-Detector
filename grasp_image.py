@@ -9,16 +9,15 @@ Dependencies:   Python 2.7
                 tensorflow (version 0.9)
 
 Template run:
-    python display_data.py --dat {'Train','Test','Val'} --pos {0, 1} --ran {0, 1} --msec{1, 2, 3, ...}
+    python grasp_image.py --im {'Image path'} --model {'Model path'} --nbest {1,2,...} --nsamples {1,2,...} --gscale {0, ..., 1.0}
 Example run:
-    python display_data.py --dat 'Train' --pos 1 --ran 0 --msec 1000
+    python grasp_image.py --im ./approach.jpg --model ./models/Grasp_model --nbest 100 --nsamples 250 --gscale 0.1
 '''
 import argparse
 import cv2
 import numpy as np
 from grasp_learner import grasp_obj
 from grasp_predictor import Predictors
-from IPython import embed
 
 def drawRectangle(I, h, w, t, gsize=300):
     I_temp = I
