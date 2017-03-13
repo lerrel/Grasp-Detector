@@ -9,9 +9,13 @@ import tensorflow as tf
 from graspNet import model as grasp_net
 
 class grasp_obj:
-    def __init__(self, checkpoint_path='./models/shake/checkpoint.ckpt-2000'):
+    def __init__(self, checkpoint_path='./models/shake/checkpoint.ckpt-2000', gpu_id=-1):
         self.checkpoint = checkpoint_path
-        self.dev_name = "/gpu:0"
+        if gpu_id==-1:
+            self.dev_name = "/cpu:0"
+        else:
+            self.dev_name = "/gpu:{}".format(gpu_id)
+
         self.IMAGE_SIZE = 224
         self.NUM_CHANNELS = 3
         self.GRASP_ACTION_SIZE = 18

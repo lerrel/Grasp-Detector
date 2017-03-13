@@ -9,9 +9,9 @@ Dependencies:   Python 2.7
                 tensorflow (version 0.9)
 
 Template run:
-    python grasp_image.py --im {'Image path'} --model {'Model path'} --nbest {1,2,...} --nsamples {1,2,...} --gscale {0, ..., 1.0}
+    python grasp_image.py --im {'Image path'} --model {'Model path'} --nbest {1,2,...} --nsamples {1,2,...} --gscale {0, ..., 1.0} --gpu {-1,0,1,...}
 Example run:
-    python grasp_image.py --im ./approach.jpg --model ./models/Grasp_model --nbest 100 --nsamples 250 --gscale 0.1
+    python grasp_image.py --im ./approach.jpg --model ./models/Grasp_model --nbest 100 --nsamples 250 --gscale 0.1 --gpu 0
 '''
 import argparse
 import cv2
@@ -46,6 +46,7 @@ parser.add_argument('--model', type=str, default='./models/Grasp_model', help='G
 parser.add_argument('--nsamples', type=int, default=128, help='Number of patch samples. More the better, but it\'ll get slower')
 parser.add_argument('--nbest', type=int, default=10, help='Number of grasps to display')
 parser.add_argument('--gscale', type=float, default=0.234375, help='Scale of grasp. Default is the one used in the paper, given a 720X1280 res image')
+parser.add_argument('--gpu', type=int, default=0, help='GPU device id; -1 for cpu')
 
 ## Parse arguments
 args = parser.parse_args()
@@ -57,6 +58,7 @@ gscale = args.gscale
 imsize = max(I.shape[:2])
 gsize = int(gscale*imsize) # Size of grasp patch
 max_batchsize = 128
+gpu_id = args.gpu
 
 ## Set up model
 if nsamples > max_batchsize:
@@ -68,7 +70,7 @@ else:
 
 print('Loading grasp model')
 st_time = time.time()
-G = grasp_obj(model_path)
+G = grasp_obj(model_path, gpu_id)
 G.BATCH_SIZE = batchsize
 G.test_init()
 P = Predictors(I, G)
