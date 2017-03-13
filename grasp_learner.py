@@ -41,7 +41,7 @@ class grasp_obj:
                 self.M.initial_weights(weight_file=None)
                 self.grasp_pred = self.M.gen_model(self.Grasp_patches)
         with tf.device("/cpu:0"):
-            grasp_variables = tf.get_collection(tf.GraphKeys.VARIABLES, scope='Grasp')
+            grasp_variables = tf.get_collection(tf.GraphKeys.GLOBAL_VARIABLES, scope='Grasp')
             grasp_saver = tf.train.Saver(grasp_variables, max_to_keep=100)
         with tf.device(self.dev_name):
             self.sess = tf.Session(config = self.config)

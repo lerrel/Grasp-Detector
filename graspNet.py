@@ -162,10 +162,10 @@ def conv(input, kernel, biases, k_h, k_w, c_o, s_h, s_w,  padding="VALID", group
     if group==1:
         conv = convolve(input, kernel)
     else:
-        input_groups = tf.split(3, group, input)
-        #input_groups = tf.split(input, group, 3)
-        kernel_groups = tf.split(3, group, kernel)
-        #kernel_groups = tf.split(input, group, 3)
+        #input_groups = tf.split(3, group, input)
+        input_groups = tf.split(input, group, 3)
+        #kernel_groups = tf.split(3, group, kernel)
+        kernel_groups = tf.split(kernel, group, 3)
         output_groups = [convolve(i, k) for i,k in zip(input_groups, kernel_groups)]
-        conv = tf.concat(3, output_groups)
+        conv = tf.concat(output_groups, 3)
     return  tf.reshape(tf.nn.bias_add(conv, biases), [-1]+conv.get_shape().as_list()[1:])
