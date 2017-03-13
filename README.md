@@ -26,6 +26,15 @@ pip install https://storage.googleapis.com/tensorflow/<Replace with wheel name>
 * cv2 ('conda install -c menpo opencv=2.4.11' or install opencv from source)
 * numpy ('pip install numpy' or 'conda install numpy')
 
+## Getting Grasp Models
+
+Download the learnt grasp models from https://www.dropbox.com/s/85b483emhubr7l4/Grasp_model?dl=0 and move it tothe models folder.
+
+```
+wget https://www.dropbox.com/s/85b483emhubr7l4/Grasp_model
+mv Grasp_model ./models/.
+```
+
 ## Example
 
 Run grasp detector that should run the model on the image by sampling patches and displaying the best grasp on the image. Press any key to exit.
