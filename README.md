@@ -49,4 +49,4 @@ python grasp_image.py --im ./approach.jpg --model ./models/Grasp_model --nbest 5
 ```
 
 ## Contact
-Lerrel Pinto <lerrelp<at>cs<dot>cmu<dot>edu>.
+Lerrel Pinto -- lerrelpATcsDOTcmuDOTedu.
