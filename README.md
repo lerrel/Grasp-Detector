@@ -28,10 +28,12 @@ pip install https://storage.googleapis.com/tensorflow/<Replace with wheel name>
 
 ## Getting Grasp Models
 
-Download the learnt grasp models from https://www.dropbox.com/s/85b483emhubr7l4/Grasp_model?dl=0 and move it tothe models folder.
+Download the learnt grasp models from https://www.dropbox.com/s/85b483emhubr7l4/Grasp_model?dl=0 and move it to a folder models.
 
 ```
+# From the repository
 wget https://www.dropbox.com/s/85b483emhubr7l4/Grasp_model
+mkdir ./models
 mv Grasp_model ./models/.
 ```
 
