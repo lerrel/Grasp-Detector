@@ -1,7 +1,9 @@
 # Grasp Detector
 
-Code to detect grasps using the model learnt in 
+Code to detect planar grasps using the model learnt in 
 https://arxiv.org/pdf/1610.01685v1.pdf
+
+![alt tag](http://www.cs.cmu.edu/~lerrelp/all_grasp_img.png)
 
 ## Getting Started
 
