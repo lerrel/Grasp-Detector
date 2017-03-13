@@ -30,11 +30,11 @@ Run grasp detector that should run the model on the image by sampling patches an
 
 ```
 # For CPU 
-python grasp_image.py --im ./approach.jpg --model ./models/Grasp_model --nbest 100 --nsamples 250 --gscale 0.234 --gpu -1
+python grasp_image.py --im ./approach.jpg --model ./models/Grasp_model --nbest 5 --nsamples 250 --gscale 0.234 --gpu -1
 
 # For GPU
-python grasp_image.py --im ./approach.jpg --model ./models/Grasp_model --nbest 100 --nsamples 1000 --gscale 0.234 --gpu 0
+python grasp_image.py --im ./approach.jpg --model ./models/Grasp_model --nbest 5 --nsamples 1000 --gscale 0.234 --gpu 0
 ```
 
 ## Contact
-Lerrel Pinto <lerrelp<at>cs<dot>cmu<dot>edu>. 
+Lerrel Pinto <lerrelp<at>cs<dot>cmu<dot>edu>.
