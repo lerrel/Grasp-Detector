@@ -18,6 +18,7 @@ import cv2
 import numpy as np
 from grasp_learner import grasp_obj
 from grasp_predictor import Predictors
+import time
 
 def drawRectangle(I, h, w, t, gsize=300):
     I_temp = I
@@ -66,16 +67,19 @@ else:
     nbatches = 1
 
 print('Loading grasp model')
+st_time = time.time()
 G = grasp_obj(model_path)
 G.BATCH_SIZE = batchsize
 G.test_init()
 P = Predictors(I, G)
+print('Time taken: {}s'.format(time.time()-st_time))
 
 fc8_predictions=[]
 patch_Hs = []
 patch_Ws = []
 
 print('Predicting on samples')
+st_time = time.time()
 for _ in range(nbatches):
     P.graspNet_grasp(patch_size=gsize, num_samples=batchsize);
     fc8_predictions.append(P.fc8_norm_vals)
@@ -88,6 +92,8 @@ patch_Ws = np.concatenate(patch_Ws)
 
 r = np.sort(fc8_predictions, axis = None)
 r_no_keep = r[-nbest]
+print('Time taken: {}s'.format(time.time()-st_time))
+
 for pindex in range(fc8_predictions.shape[0]):
     for tindex in range(fc8_predictions.shape[1]):
         if fc8_predictions[pindex, tindex] < r_no_keep:
